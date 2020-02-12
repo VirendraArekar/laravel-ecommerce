@@ -1,0 +1,5 @@
+@include('includes.header')
+@include('includes.navbar')
+@include('includes.cart')
+@yield('content')
+@include('includes.footer')
