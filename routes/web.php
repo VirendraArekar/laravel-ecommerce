@@ -29,6 +29,11 @@ Route::resource('order','Shop\Order')->middleware('checkout');
 
 // route for processing payment
 Route::resource('payment', 'Shop\PaymentController')->middleware('checkout');
-Route::post('paypal', 'Shop\PaymentController@payWithpaypal')->middleware('checkout');;
-Route::get('status', 'Shop\PaymentController@getPaymentStatus')->middleware('checkout');;
-Route::get('paymentstatus', 'Shop\PaymentController@index')->middleware('checkout');;
+Route::post('paypal', 'Shop\PaymentController@payWithpaypal')->middleware('checkout');
+Route::get('status', 'Shop\PaymentController@getPaymentStatus')->middleware('checkout');
+Route::get('paymentstatus', 'Shop\PaymentController@index')->middleware('checkout');
+
+// Contacts
+Route::get('contact','Shop\Contact@index');
+// category wise search
+Route::get('{slug}/{slug2}/{start?}/{end?}', 'Shop\Product@categorysearch')->where('slug', 'mens|womans|kids');

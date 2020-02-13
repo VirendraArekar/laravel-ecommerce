@@ -14,7 +14,7 @@ class AddTypeToProducts extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('type')->default('tshirt')->after('category');
+            $table->string('type')->default('mens')->after('category');
         });
     }
 

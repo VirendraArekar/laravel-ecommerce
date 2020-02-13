@@ -1,5 +1,5 @@
 <!-- ##### Footer Area Start ##### -->
-<footer class="footer_area clearfix">
+<footer class="footer_area clearfix" style="padding-bottom:0px;margin-top:0px;">
     <div class="container">
         <div class="row">
             <!-- Single Widget Area -->
@@ -12,8 +12,8 @@
                     <!-- Footer Menu -->
                     <div class="footer_menu">
                         <ul>
-                            <li><a href="shop.html">Shop</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                        <li><a href="{{url('/')}}">Shop</a></li>
+                            <li><a href="{{url('contact')}}">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -22,10 +22,8 @@
             <div class="col-12 col-md-6">
                 <div class="single_widget_area mb-30">
                     <ul class="footer_widget_menu">
-                        <li><a href="#">Order Status</a></li>
+                    <li><a href="{{url('order')}}">Order Status</a></li>
                         <li><a href="#">Payment Options</a></li>
-                        <li><a href="#">Shipping and Delivery</a></li>
-                        <li><a href="#">Guides</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms of Use</a></li>
                     </ul>
@@ -42,8 +40,8 @@
                     </div>
                     <div class="subscribtion_form">
                         <form action="#" method="post">
-                            <input type="email" name="mail" class="mail" placeholder="Your email here">
-                            <button type="submit" class="submit"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+                            <input type="email" name="mail" class="mail" placeholder="Your email here" disabled>
+                            <button type="button" class="submit"><i class="fa fa-long-arrow-right" aria-hidden="true" disabled></i></button>
                         </form>
                     </div>
                 </div>
@@ -62,11 +60,11 @@
             </div>
         </div>
 
-<div class="row mt-5">
+<div class="row mt-5" >
             <div class="col-md-12 text-center">
                 <p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This made <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Virendra Arekar</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This made <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="{{url('/')}}" target="_blank">Virendra Arekar</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </p>
             </div>

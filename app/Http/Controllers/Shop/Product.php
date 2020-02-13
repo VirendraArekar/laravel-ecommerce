@@ -11,6 +11,7 @@ use App\Models\Color;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Cart;
+use DB;
 
 class Product extends Controller
 {
@@ -107,27 +108,27 @@ class Product extends Controller
         $products = Products::query();
         $sizes = Size::select('id')->where('name', 'LIKE', "%$keyword%")->first();
         if($sizes){
-          $products = $products->WhereRaw('json_contains(size, \'[' . $sizes->id . ']\')');
+          $products = $products->where('size',$size->id);
         }
 
         $color = Color::select('id')->where('name', 'LIKE', "%$keyword%")->first();
         if($color){
-          $products = $products->orWhereRaw('json_contains(color, \'[' . $color->id . ']\')');
+          $products = $products->where('color',$color->id);
         }
 
         $category = Category::select('id')->where('name', 'LIKE', "%$keyword%")->first();
 
         if($category){
-        //   $products = $products->orWhere('category', $category->id);
+          $products = $products->where('category',$category->id);
         }
 
         $brand = Brand::select('id')->where('name', 'LIKE', "%$keyword%")->first();
 
         if($brand){
-        //   $products = $products->orWhere('brand', 4);
+          $products = $products->where('brand',$brand->id);
         }
 
-        // $data = $products->orWhere('name', 'LIKE', "%$keyword%")->where('description', 'LIKE', "%$keyword%")->orWhereRaw('json_contains(tags, \'["' . $keyword . '"]\')');
+        $products = $products->orWhere('name', 'LIKE', "%$keyword%")->orWhere('tags', 'LIKE',"%$keyword%");
 
         $products = $products->paginate(2);
         $sizes = Size::all();
@@ -137,5 +138,39 @@ class Product extends Controller
 
        return view('product.index',compact('products','brands','categories','colors','sizes'));
 
+    }
+
+    public function categorysearch(Request $request,$type,$tags,$start = 0, $end = 0)
+    {
+        $thirdparameter = '';
+        $sizes = Size::all();
+        $colors = Color::all();
+        $categories = Category::all();
+        $brands = Brand::all();
+
+        if(\Request::segment(3) != null){
+          $thirdparameter = \Request::segment(3);
+        }
+        $products = Products::where('tags','LIKE', "%$tags%")->where('type',$type);
+        if($thirdparameter){
+            $products = $products->orWhere('name','LIKE',"%$thirdparameter%");
+            foreach($colors as $color){
+                if($color->name == $thirdparameter)
+                {
+                    $products = $products->where('color',$color->id);
+                }
+            }
+            foreach($brands as $brand){
+                if($brand->name == $thirdparameter)
+                {
+                    $products = $products->where('brand',$brand->id);
+                }
+            }
+        }
+
+        $products = $products->paginate(6);
+
+
+        return view('product.index',compact('products','brands','categories','colors','sizes'));
     }
 }

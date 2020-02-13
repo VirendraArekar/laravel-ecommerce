@@ -86,7 +86,7 @@
                 <div class="popular-products-slides owl-carousel">
 
                     <!-- Single Product -->
-                    <div class="single-product-wrapper">
+                    {{-- <div class="single-product-wrapper">
                         <!-- Product Image -->
                         <div class="product-img">
                             <img src="img/product-img/product-1.jpg" alt="">
@@ -113,7 +113,48 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
+                    @if(count($dresses) > 0)
+                      @foreach($dresses as $dress)
+                         <!-- Single Product -->
+                            <div class="single-product-wrapper">
+                                <!-- Product Image -->
+                                <div class="product-img">
+                                <img src="{{$dress->images[0]}}" alt="">
+                                    <!-- Hover Thumb -->
+                                    <img class="hover-img" src="{{$dress->images[1]}}" alt="">
+                                    <!-- Favourite -->
+                                    <div class="product-favourite">
+                                        <a href="#" class="favme fa fa-heart"></a>
+                                    </div>
+                                </div>
+                                <!-- Product Description -->
+                                <div class="product-description">
+                                    <span>
+                                        @foreach($brands as $brand)
+                                          @if($brand->id == $dress->brand)
+                                            {{$brand->name}}
+                                          @endif
+                                        @endforeach
+                                    </span>
+                                    <a href="single-product-details.html">
+                                       <h6>{{$dress->name}}</h6>
+                                    </a>
+                                    <p class="product-price">$80.00</p>
+
+                                    <!-- Hover Content -->
+                                    <div class="hover-content">
+                                        <!-- Add to Cart -->
+                                        <div class="add-to-cart-btn">
+                                        <a href="{{url("product/$dress->sku")}}" class="btn essence-btn">Add to Cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                     <h4 class="text-center">No Product Found</h4>
+                    @endif
                 </div>
             </div>
         </div>
