@@ -5,7 +5,7 @@
         <!-- Classy Menu -->
         <nav class="classy-navbar" id="essenceNav">
             <!-- Logo -->
-            <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+        <a class="nav-brand" href="{{url('/')}}"><img src="{{url('img/core-img/logo.png')}}" alt=""></a>
             <!-- Navbar Toggler -->
             <div class="classy-navbar-toggler">
                 <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -23,46 +23,29 @@
                             <div class="megamenu">
                                 <ul class="single-mega cn-col-4">
                                     <li class="title">Women's Collection</li>
-                                    <li><a href="shop.html">Dresses</a></li>
-                                    <li><a href="shop.html">Blouses &amp; Shirts</a></li>
-                                    <li><a href="shop.html">T-shirts</a></li>
-                                    <li><a href="shop.html">Rompers</a></li>
-                                    <li><a href="shop.html">Bras &amp; Panties</a></li>
+                                    <li><a href="{{url('woman/Dresses')}}">Dresses</a></li>
+                                    <li><a href="{{url('woman/Blouses')}}">Blouses &amp; Shirts</a></li>
+                                    <li><a href="{{url('woman/tshirt')}}">T-shirts</a></li>
+                                    <li><a href="{{url('woman/rompers')}}">Rompers</a></li>
+                                    <li><a href="{{url('woman/bras &amp panties')}}">Bras &amp; Panties</a></li>
                                 </ul>
                                 <ul class="single-mega cn-col-4">
                                     <li class="title">Men's Collection</li>
-                                    <li><a href="shop.html">T-Shirts</a></li>
-                                    <li><a href="shop.html">Polo</a></li>
-                                    <li><a href="shop.html">Shirts</a></li>
-                                    <li><a href="shop.html">Jackets</a></li>
-                                    <li><a href="shop.html">Trench</a></li>
+                                    <li><a href="{{url('men/tshirt')}}">T-Shirts</a></li>
+                                    <li><a href="{{url('men/shirt')}}">Shirts</a></li>
+                                    <li><a href="{{url('men/jacket')}}">Jackets</a></li>
                                 </ul>
                                 <ul class="single-mega cn-col-4">
                                     <li class="title">Kid's Collection</li>
-                                    <li><a href="shop.html">Dresses</a></li>
-                                    <li><a href="shop.html">Shirts</a></li>
-                                    <li><a href="shop.html">T-shirts</a></li>
-                                    <li><a href="shop.html">Jackets</a></li>
-                                    <li><a href="shop.html">Trench</a></li>
+                                    <li><a href="{{url('kid/tshirt')}}">T-shirts</a></li>
+                                    <li><a href="{{url('kid/shirt')}}">Shirts</a></li>
+                                    <li><a href="{{url('kid/jacket')}}">Jackets</a></li>
                                 </ul>
                                 <div class="single-mega cn-col-4">
-                                    <img src="img/bg-img/bg-6.jpg" alt="">
+                                <img src="{{url('img/bg-img/bg-6.jpg')}}" alt="">
                                 </div>
                             </div>
                         </li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="shop.html">Shop</a></li>
-                                <li><a href="single-product-details.html">Product Details</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="single-blog.html">Single Blog</a></li>
-                                <li><a href="regular-page.html">Regular Page</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="blog.html">Blog</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -74,14 +57,14 @@
         <div class="header-meta d-flex clearfix justify-content-end">
             <!-- Search Area -->
             <div class="search-area">
-                <form action="#" method="post">
+               <form id="searchform" action="{{url('search/data')}}" method="get">
                     <input type="search" name="search" id="headerSearch" placeholder="Type for search">
                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
             </div>
             <!-- Favourite Area -->
             <div class="favourite-area">
-                <a href="#"><img src="img/core-img/heart.svg" alt=""></a>
+            <a href="{{url('favorite')}}"><img src="{{asset('img/core-img/heart.svg')}}" alt=""></a>
             </div>
              <!-- Authentication Links -->
              @guest
@@ -95,9 +78,9 @@
                 </div>
              @endif
          @else
-         <div class="user-login-info ">
+         {{-- <div class="user-login-info ">
          <ul class="">
-            <li><a href="#"><img src="img/core-img/user.svg" alt=""></a>
+         <li><a href="#"><img src="{{url('img/core-img/user.svg')}}" alt=""></a>
                 <div class="megamenu">
                 <form action="{{ route('logout')}}" method="post">
                     @csrf
@@ -108,11 +91,34 @@
                 </div>
             </li>
          </ul>
+         </div> --}}
+
+         <div class="user-login-info">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="{{url('img/core-img/user.svg')}}" alt="">
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{url('order')}}">My Orers</a>
+              <a class="dropdown-item" href="{{url('profile')}}">Profile</a>
+                <div class="dropdown-divider"></div>
+                <form action="{{ route('logout')}}" method="post">
+                    @csrf
+                        <button type="submit" class="dropdown-item">Log out</button>
+                </form>
+              </div>
          </div>
+
          @endguest
             <!-- Cart Area -->
             <div class="cart-area">
-                <a href="#" id="essenceCartBtn"><img src="img/core-img/bag.svg" alt=""> <span id="count">{{DB::table('carts')->count()}}</span></a>
+              <a href="#" id="essenceCartBtn"><img src="{{asset('img/core-img/bag.svg')}}" alt="">
+                 <span id="count">
+                     @if(Auth::user())
+                       {{DB::table('carts')->count()}}
+                     @else
+                       0
+                     @endif
+                 </span></a>
             </div>
         </div>
 

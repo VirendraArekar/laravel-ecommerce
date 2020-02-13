@@ -4,6 +4,14 @@ namespace App\Http\Controllers\Shop;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Order as Myorder;
+use App\Models\Size;
+use App\Models\Color;
+use App\Models\Category;
+use App\Models\Brand;
+use Carbon\Carbon;
+use App\Models\Product;
+use Auth;
 
 class Order extends Controller
 {
@@ -14,7 +22,14 @@ class Order extends Controller
      */
     public function index()
     {
-        //
+        $brands = Brand::all();
+        $categories = Category::all();
+        $colors = Color::all();
+        $sizes = Size::all();
+        $orders = Myorder::where('user_id',Auth::id())->get();
+
+
+        return view('order.index',compact('orders','brands','categories','colors','sizes'));
     }
 
     /**

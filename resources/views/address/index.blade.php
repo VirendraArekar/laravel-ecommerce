@@ -13,6 +13,7 @@
                         </div>
 
                     <form action="{{url('payment')}}" method="post" name="checkout">
+                        @csrf
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="first_name">First Name <span>*</span></label>
@@ -96,38 +97,19 @@
                             @endforeach
                             <li><span>Subtotal</span> <span>${{$total}}</span></li>
                             <li><span>Shipping</span> <span>Free</span></li>
+                            <li><span>Discount</span> <span>10%</span></li>
                             <li><span>Total</span> <span>${{$final_price}}</span></li>
+                            <input type="text" name="amount" id="amount"  value="{{$final_price}}" hidden>
                         </ul>
 
-                        <div id="accordion" role="tablist" class="mb-4">
-                            <div class="card">
-                                <div class="card-header" role="tab" id="headingOne">
-                                    <h6 class="mb-0">
-                                        <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="fa fa-circle-o mr-3"></i>Paypal</a>
-                                    </h6>
-                                </div>
-
-                                <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integ er bibendum sodales arcu id te mpus. Ut consectetur lacus.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" role="tab" id="headingTwo">
-                                    <h6 class="mb-0">
-                                        <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-circle-o mr-3"></i>cash on delievery</a>
-                                    </h6>
-                                </div>
-                                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quis in veritatis officia inventore, tempore provident dignissimos.</p>
-                                    </div>
-                                </div>
-                            </div>
-
+                        <div style="font-size:18px;margin-bottom:10px;">
+                           <div class="justify-content-center mb-3">
+                            <input class="text-center" type="radio" id="payment" name="payment" value="paypal"> PAYPAL
+                           </div>
+                           <div class="justify-content-center">
+                            <input class="text-center" type="radio" id="payment" name="payment" value="cash_on_delivery" checked> CASH ON DELIVERY
+                           </div>
                         </div>
-
                         <button type="submit" class="btn essence-btn">Place Order</button>
                     </form>
                     </div>

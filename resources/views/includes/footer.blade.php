@@ -93,6 +93,110 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 <script src="{{asset('js/checkout.js')}}"></script>
+<script src="{{asset('js/wishlist.js')}}"></script>
+@yield('script')
+<script>
+$(function() {
+    $('#searchform').one('submit', function myFormSubmitCallback(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        var $this = $(this);
+        var keyword = $('#headerSearch').val();
+        if (keyword !== '') {
+            var url = "<?php echo url('search'); ?>" + '/' + keyword;
+            $('#searchform').attr('action', url);
+            $this.submit();
+        } else {
+            $this.one('submit', myFormSubmitCallback);
+        }
+    });
+
+
+    $('a#favorite').click(function() {
+        var sku = $(this).attr('data-id');
+        var cls = $(this).attr('class');
+        var like = cls.match(/active is_animating/);
+        var jsondata = '';
+        if (like != null) {
+            jsondata = { sku: sku, action: 'like' };
+        } else {
+            jsondata = { sku: sku, action: 'unlike' };
+        }
+        var auth = "{{ Auth::check() ? true : false }}";
+
+        if(auth !== ''){
+            $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+
+            $.ajax({
+                type: 'POST',
+                url: "http://localhost/myecom/public/like",
+                data: jsondata,
+                success: function(response) {
+                    toastr.success(response.message);
+                },
+                error: function(error) {
+                    toastr.error('error occured! please try again.');
+                }
+            });
+        }
+        else{
+            $("#modalLoginForm").modal("show");
+        }
+
+    });
+
+    $("form[name='loginform']").validate({
+        rules: {
+
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true,
+                minlength: 3,
+                maxlength : 20
+            }
+        },
+        messages: {
+            email: {
+                required: "<p class='text-danger'>Enter your Email</p>",
+                email: "<p class='text-danger'>Please enter a valid email address.</p>",
+            },
+            password: {
+                required: "<p class='text-danger'>Enter your password</p>",
+                minlength: "<p class='text-danger'>Password must 3 to 20 char long.</p>",
+            }
+        },
+        submitHandler: function(form) {
+            var email = $('#eml').val();
+            var pass = $('#pwd').val();
+            $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+
+            $.ajax({
+                type: 'POST',
+                url: "http://localhost/myecom/public/login",
+                data: {email : email, password : pass},
+                success: function(response) {
+                    if(response.auth)
+                    {
+                        toastr.success('User logged in.');
+                        location.reload();
+                    }
+                    else{
+                        toastr.error('Authentication failed.');
+                    }
+                },
+                error: function(error) {
+                    toastr.error('error occured! please try again.');
+                }
+            });
+
+        }
+    });
+
+});
+</script>
 </body>
 
 </html>

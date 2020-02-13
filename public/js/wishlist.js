@@ -1,6 +1,7 @@
 $(document).ready(function() {
-    $(".btn-outline-danger").click(function(e) {
+    $(".btn-outline-warning").click(function(e) {
         var id = this.id;
+        alert(id);
         bootbox.confirm({
             message: "Do you want to remove it?",
             size: 'small',
@@ -25,17 +26,11 @@ $(document).ready(function() {
 
                     $.ajax({
                         type: 'DELETE',
-                        url: "http://localhost/myecom/public/cart/" + id,
-                        data: {
-                            "id": id,
-                        },
-                        contentType: 'application/json',
-                        dataType: 'json',
+                        url: "http://localhost/myecom/public/favorite/" + id,
+                        data: { id: id },
                         success: function(response) {
                             $("#row-" + id).css('display', 'none');
                             $("#hr-" + id).css('display', 'none');
-                            $("#count").text(response.count);
-                            $("#total").text(response.total);
                             toastr.success(response.message);
                         },
                         error: function(error) {

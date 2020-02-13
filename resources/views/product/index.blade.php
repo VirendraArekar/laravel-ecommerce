@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- ##### Breadcumb Area Start ##### -->
-    <div class="breadcumb_area bg-img" style="background-image: url(img/bg-img/breadcumb.jpg);">
+    <div class="breadcumb_area bg-img" style="background-image: url({{url('img/bg-img/breadcumb.jpg')}});">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
@@ -33,74 +33,36 @@
                                     <!-- Single Item -->
                                     <li data-toggle="collapse" data-target="#clothing">
                                         <a href="#">clothing</a>
-                                        <ul class="sub-menu collapse show" id="clothing">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">Bodysuits</a></li>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                            <li><a href="#">Jackets &amp; Coats</a></li>
-                                            <li><a href="#">Jeans</a></li>
-                                            <li><a href="#">Pants &amp; Leggings</a></li>
-                                            <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                            <li><a href="#">Shirts &amp; Blouses</a></li>
-                                            <li><a href="#">Shirts</a></li>
-                                            <li><a href="#">Sweaters &amp; Knits</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- Single Item -->
-                                    <li data-toggle="collapse" data-target="#shoes" class="collapsed">
-                                        <a href="#">shoes</a>
-                                        <ul class="sub-menu collapse" id="shoes">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">Bodysuits</a></li>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                            <li><a href="#">Jackets &amp; Coats</a></li>
-                                            <li><a href="#">Jeans</a></li>
-                                            <li><a href="#">Pants &amp; Leggings</a></li>
-                                            <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                            <li><a href="#">Shirts &amp; Blouses</a></li>
-                                            <li><a href="#">Shirts</a></li>
-                                            <li><a href="#">Sweaters &amp; Knits</a></li>
+                                        <ul class="sub-menu collapse active" id="clothing">
+                                            <li><a href="{{url('product')}}">All</a></li>
+                                            <li><a href="{{url("search/Bodysuits")}}">Bodysuits</a></li>
+                                            <li><a href="{{url("search/Dresses")}}">Dresses</a></li>
+                                            <li><a href="{{url("search/Hoodies &amp; Sweats")}}">Hoodies &amp; Sweats</a></li>
+                                            <li><a href="{{url("search/Jackets &amp; Coats")}}">Jackets &amp; Coats</a></li>
+                                            <li><a href="{{url("search/Jeans")}}">Jeans</a></li>
+                                            <li><a href="{{url("search/Pants &amp; Leggings")}}">Pants &amp; Leggings</a></li>
+                                            <li><a href="{{url("search/Rompers &amp; Jumpsuits")}}">Rompers &amp; Jumpsuits</a></li>
+                                            <li><a href="{{url("search/Shirts &amp; Blouses")}}">Shirts &amp; Blouses</a></li>
+                                            <li><a href="{{url("search/Sweaters &amp; Knits")}}">Sweaters &amp; Knits</a></li>
                                         </ul>
                                     </li>
                                     <!-- Single Item -->
                                     <li data-toggle="collapse" data-target="#accessories" class="collapsed">
                                         <a href="#">accessories</a>
                                         <ul class="sub-menu collapse" id="accessories">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">Bodysuits</a></li>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                            <li><a href="#">Jackets &amp; Coats</a></li>
-                                            <li><a href="#">Jeans</a></li>
-                                            <li><a href="#">Pants &amp; Leggings</a></li>
-                                            <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                            <li><a href="#">Shirts &amp; Blouses</a></li>
-                                            <li><a href="#">Shirts</a></li>
-                                            <li><a href="#">Sweaters &amp; Knits</a></li>
+                                            <li><a href="{{url('product')}}">All</a></li>
+                                            <li><a href="{{url("search/Bodysuits")}}">Bodysuits</a></li>
+                                            <li><a href="{{url("search/Dresses")}}">Dresses</a></li>
+                                            <li><a href="{{url("search/Hoodies &amp; Sweats")}}">Hoodies &amp; Sweats</a></li>
+                                            <li><a href="{{url("search/Jackets &amp; Coats")}}">Jackets &amp; Coats</a></li>
+                                            <li><a href="{{url("search/Jeans")}}">Jeans</a></li>
+                                            <li><a href="{{url("search/Pants &amp; Leggings")}}">Pants &amp; Leggings</a></li>
+                                            <li><a href="{{url("search/Rompers &amp; Jumpsuits")}}">Rompers &amp; Jumpsuits</a></li>
+                                            <li><a href="{{url("search/Shirts &amp; Blouses")}}">Shirts &amp; Blouses</a></li>
+                                            <li><a href="{{url("search/Sweaters &amp; Knits")}}">Sweaters &amp; Knits</a></li>
                                         </ul>
                                     </li>
                                 </ul>
-                            </div>
-                        </div>
-
-                        <!-- ##### Single Widget ##### -->
-                        <div class="widget price mb-50">
-                            <!-- Widget Title -->
-                            <h6 class="widget-title mb-30">Filter by</h6>
-                            <!-- Widget Title 2 -->
-                            <p class="widget-title2 mb-30">Price</p>
-
-                            <div class="widget-desc">
-                                <div class="slider-range">
-                                    <div data-min="49" data-max="360" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="49" data-value-max="360" data-label-result="Range:">
-                                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                    </div>
-                                    <div class="range-price">Range: $49.00 - $360.00</div>
-                                </div>
                             </div>
                         </div>
 
@@ -110,16 +72,9 @@
                             <p class="widget-title2 mb-30">Color</p>
                             <div class="widget-desc">
                                 <ul class="d-flex">
-                                    <li><a href="#" class="color1"></a></li>
-                                    <li><a href="#" class="color2"></a></li>
-                                    <li><a href="#" class="color3"></a></li>
-                                    <li><a href="#" class="color4"></a></li>
-                                    <li><a href="#" class="color5"></a></li>
-                                    <li><a href="#" class="color6"></a></li>
-                                    <li><a href="#" class="color7"></a></li>
-                                    <li><a href="#" class="color8"></a></li>
-                                    <li><a href="#" class="color9"></a></li>
-                                    <li><a href="#" class="color10"></a></li>
+                                    @foreach($colors as $color)
+                                <li><a href="{{url("search/$color->name")}}" style="background-color:{{$color->name}};" class="red"></a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -130,11 +85,9 @@
                             <p class="widget-title2 mb-30">Brands</p>
                             <div class="widget-desc">
                                 <ul>
-                                    <li><a href="#">Asos</a></li>
-                                    <li><a href="#">Mango</a></li>
-                                    <li><a href="#">River Island</a></li>
-                                    <li><a href="#">Topshop</a></li>
-                                    <li><a href="#">Zara</a></li>
+                                    @foreach($brands as $brand)
+                                      <li><a href="{{url("search/$brand->name")}}">{{$brand->name}}</a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -148,7 +101,7 @@
                                 <div class="product-topbar d-flex align-items-center justify-content-between">
                                     <!-- Total Products -->
                                     <div class="total-products">
-                                        <p><span>186</span> products found</p>
+                                      <p><span>{{count($products)}}</span> products found</p>
                                     </div>
                                     <!-- Sorting -->
                                     <div class="product-sorting d-flex">
@@ -177,17 +130,15 @@
                                             <?php $i=0; ?>
                                             @foreach(json_decode($product->images) as $image)
                                             <?php $i++; ?>
-                                        <img class="{{ $i==2 ? 'hover-img' : '' }}" src="{{$image}}" alt="">
+                                            <img class="{{ $i==2 ? 'hover-img' : '' }}" src="{{$image}}" alt="">
                                             @endforeach
-
-
                                             <!-- Product Badge -->
                                             <div class="product-badge offer-badge">
                                                 <span>-30%</span>
                                             </div>
                                             <!-- Favourite -->
                                             <div class="product-favourite">
-                                                <a href="#" class="favme fa fa-heart"></a>
+                                            <a href="#" class="favme fa fa-heart" id="favorite" data-id="{{$product->sku}}"></a>
                                             </div>
                                         </div>
 
@@ -219,7 +170,7 @@
                     </div>
                     <!-- Pagination -->
                     <nav aria-label="navigation">
-                        <ul class="pagination mt-50 mb-70">
+                        {{-- <ul class="pagination mt-50 mb-70">
                             <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
                             <li class="page-item"><a class="page-link" href="#">1</a></li>
                             <li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -227,7 +178,8 @@
                             <li class="page-item"><a class="page-link" href="#">...</a></li>
                             <li class="page-item"><a class="page-link" href="#">21</a></li>
                             <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
-                        </ul>
+                        </ul> --}}
+                        {{ $products->links() }}
                     </nav>
                 </div>
             </div>

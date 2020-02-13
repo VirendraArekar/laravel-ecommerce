@@ -9,6 +9,10 @@ use Auth;
 
 class Delivery extends Controller
 {
+    public function __construct()
+    {
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +29,7 @@ class Delivery extends Controller
 
            $discount = 10;
 
-           $final_price = $total * ($discount / 100);
+           $final_price = $total - $total * ($discount / 100) ;
            return view('address.index',compact('total','discount','final_price','carts'));
         }
     }

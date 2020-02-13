@@ -10,6 +10,7 @@ use App\Models\Size;
 use App\Models\Color;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Cart;
 
 class Product extends Controller
 {
@@ -99,5 +100,42 @@ class Product extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search($keyword)
+    {
+        $products = Products::query();
+        $sizes = Size::select('id')->where('name', 'LIKE', "%$keyword%")->first();
+        if($sizes){
+          $products = $products->WhereRaw('json_contains(size, \'[' . $sizes->id . ']\')');
+        }
+
+        $color = Color::select('id')->where('name', 'LIKE', "%$keyword%")->first();
+        if($color){
+          $products = $products->orWhereRaw('json_contains(color, \'[' . $color->id . ']\')');
+        }
+
+        $category = Category::select('id')->where('name', 'LIKE', "%$keyword%")->first();
+
+        if($category){
+        //   $products = $products->orWhere('category', $category->id);
+        }
+
+        $brand = Brand::select('id')->where('name', 'LIKE', "%$keyword%")->first();
+
+        if($brand){
+        //   $products = $products->orWhere('brand', 4);
+        }
+
+        // $data = $products->orWhere('name', 'LIKE', "%$keyword%")->where('description', 'LIKE', "%$keyword%")->orWhereRaw('json_contains(tags, \'["' . $keyword . '"]\')');
+
+        $products = $products->paginate(2);
+        $sizes = Size::all();
+        $colors = Color::all();
+        $categories = Category::all();
+        $brands = Brand::all();
+
+       return view('product.index',compact('products','brands','categories','colors','sizes'));
+
     }
 }

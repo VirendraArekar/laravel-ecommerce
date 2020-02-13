@@ -2,4 +2,5 @@
 @include('includes.navbar')
 @include('includes.cart')
 @yield('content')
+@include('modal.login')
 @include('includes.footer')

@@ -12,6 +12,7 @@ use App\Models\Size;
 use App\Models\Color;
 use App\Models\Brand;
 use App\Models\Category;
+use Session;
 use Log;
 
 class Cart extends Controller
@@ -23,13 +24,13 @@ class Cart extends Controller
      */
     public function index()
     {
-        $carts = Bag::selectRaw('qty*price as total')->get();
-        $total = 0;
-        foreach($carts as $cart){
-            $total += $cart->total;
-        }
+        $sizes = Size::all();
+        $colors = Color::all();
+        $categories = Category::all();
+        $brands = Brand::all();
+        $carts = Bag::all();
 
-        echo $total;
+        return view('cart.index',compact('carts','brands','categories','colors','sizes'));
     }
 
     /**
@@ -54,9 +55,9 @@ class Cart extends Controller
        $colors = Color::all();
        $categories = Category::all();
        $brands = Brand::all();
+       $product = Product::where('sku','=',$request->addtocart)->first();
         if(Auth::check()){
            $id = Auth::id();
-           $product = Product::where('sku','=',$request->addtocart)->first();
            if($product){
               $bag = new Bag;
               $bag->user_id = $id;
@@ -80,11 +81,37 @@ class Cart extends Controller
 
            }
            else{
-               echo "404";
+            //    $product = [
+            //     'user_id' =>null,
+            //     'sku' => $product->sku,
+            //     'name' => $product->name,
+            //     'brand' => $product->brand,
+            //     'category' => $product->category,
+            //     'size' => $request->size,
+            //     'color' => $request->color,
+            //     'price' => $product->price,
+            //     'images' => $product->images,
+            //     'description' => $product->description,
+            //     'tags' => $product->tags,
+            //     'created_at' => Carbon::now(),
+            //     'updated_at' => Carbon::now(),
+            //    ];
+
+            //    if(Session::has('cart')){
+            //        Session::push('cart',json_encode($product));
+            //        dd(Session::get('cart'));
+            //    }
+            //    else{
+            //        Session::put('cart',[json_ecode($product)]);
+            //        dd(Session::get('cart'));
+            //    }
+
+
            }
 
         }
         else{
+            // Session::forget('cart');
             $cart = [
                 'sku' => $product->sku,
                 'name' => $product->name,
@@ -98,12 +125,13 @@ class Cart extends Controller
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ];
-            if(Session::get('cart')){
+            if(Session::has('cart')){
                 Session::push('cart',$cart);
             }
             else{
-                Session::put('cart',$cart);
+                Session::put('cart',[ $cart ]);
             }
+            dd(Session::get('cart'));
         }
     }
 
