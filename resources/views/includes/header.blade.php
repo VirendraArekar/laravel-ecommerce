@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('build/toastr.css')}}">
     <link rel="stylesheet" href="{{ asset('css/validation.css')}}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>

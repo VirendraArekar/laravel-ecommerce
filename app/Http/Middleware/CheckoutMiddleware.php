@@ -16,6 +16,7 @@ class CheckoutMiddleware
      */
     public function handle($request, Closure $next)
     {
+
         if(auth()->user()){
             return $next($request);
           }

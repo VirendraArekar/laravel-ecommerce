@@ -22,7 +22,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -32,9 +32,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // return view('home');
+
         $dresses = Product::where('type','womans')->where('tags','LIKE',"%dress%")->take(6)->get();
-        // dd($dresses);
         $sizes = Size::all();
         $colors = Color::all();
         $categories = Category::all();

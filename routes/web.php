@@ -37,3 +37,5 @@ Route::get('paymentstatus', 'Shop\PaymentController@index')->middleware('checkou
 Route::get('contact','Shop\Contact@index');
 // category wise search
 Route::get('{slug}/{slug2}/{start?}/{end?}', 'Shop\Product@categorysearch')->where('slug', 'mens|womans|kids');
+
+

@@ -88,11 +88,35 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- Active js -->
 <script src="{{asset('js/active.js')}}"></script>
 <script src="{{asset('js/cart.js')}}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
 <script src="{{asset('js/checkout.js')}}"></script>
 <script src="{{asset('js/wishlist.js')}}"></script>
 @yield('script')
+<script>
+    $(document).ready(function () {
+        $('#posts').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax":{
+                     "url": "{{ url('allproduct') }}",
+                     "dataType": "json",
+                     "type": "POST",
+                     "data":{ _token: "{{csrf_token()}}"}
+                   },
+            "columns": [
+                { "data": "id" },
+                { "data": "sku" },
+                { "data": "name" },
+                { "data": "brand_id" },
+                { "data": "category_id" }
+            ]
+
+        });
+    });
+</script>
 <script>
 $(function() {
     $('#searchform').one('submit', function myFormSubmitCallback(evt) {
